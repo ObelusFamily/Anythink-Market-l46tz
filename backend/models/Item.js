@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var uniqueValidator = require("mongoose-unique-validator");
 var slug = require("slug");
 var User = mongoose.model("User");
+var falsyValues = ["", undefined, null];
 
 var ItemSchema = new mongoose.Schema(
   {
@@ -45,11 +46,14 @@ ItemSchema.methods.updateFavoriteCount = function() {
 };
 
 ItemSchema.methods.toJSONFor = function(user) {
+  var image = this.image;
+  if (falsyValues.includes(image)) 
+    image = "https://www.anythink.market/placeholder.png";
   return {
     slug: this.slug,
     title: this.title,
     description: this.description,
-    image: this.image,
+    image: image,
     createdAt: this.createdAt,
     updatedAt: this.updatedAt,
     tagList: this.tagList,
