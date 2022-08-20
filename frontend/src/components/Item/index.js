@@ -10,7 +10,7 @@ import {
 } from "../../constants/actionTypes";
 import placeholderImg from "../../imgs/placeholder.png";
 
-const falsyValues = ['', undefined, null];
+const falsyValues = ["", undefined, null];
 
 const mapStateToProps = (state) => ({
   ...state.item,
@@ -40,7 +40,7 @@ class Item extends React.Component {
     if (!this.props.item) {
       return null;
     }
-   
+
     const markup = {
       __html: marked(this.props.item.description, { sanitize: true }),
     };
@@ -53,7 +53,13 @@ class Item extends React.Component {
           <div className="row bg-white p-4">
             <div className="col-6">
               <img
-                src={falsyValues.includes(this.props.item.image) ? placeholderImg : this.props.item.image}
+                src={
+                  falsyValues.includes(this.props.item.image)
+                    ? placeholderImg
+                    : this.props.item.image
+                }
+                onError={placeholderImg}
+                placeholder={placeholderImg}
                 alt={this.props.item.title}
                 className="item-img"
                 style={{ height: "500px", width: "100%", borderRadius: "6px" }}
