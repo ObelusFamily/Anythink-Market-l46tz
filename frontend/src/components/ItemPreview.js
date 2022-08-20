@@ -39,11 +39,7 @@ const ItemPreview = (props) => {
     >
       <img
         alt="item"
-        src={
-          falsyValues.includes(this.props.item.image)
-            ? placeholderImg
-            : this.props.item.image
-        }
+        src={falsyValues.includes(item.image) ? placeholderImg : item.image}
         placeholder={placeholderImg}
         className="card-img-top item-img"
         style={{ borderRadius: "20px" }}
