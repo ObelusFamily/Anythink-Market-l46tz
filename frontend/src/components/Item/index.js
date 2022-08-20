@@ -58,7 +58,6 @@ class Item extends React.Component {
                     ? placeholderImg
                     : this.props.item.image
                 }
-                onError={placeholderImg}
                 placeholder={placeholderImg}
                 alt={this.props.item.title}
                 className="item-img"

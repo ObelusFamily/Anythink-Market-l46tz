@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { ITEM_FAVORITED, ITEM_UNFAVORITED } from "../constants/actionTypes";
 import placeholderImg from "../imgs/placeholder.png";
 
+const falsyValues = ["", undefined, null];
+
 const mapDispatchToProps = (dispatch) => ({
   favorite: (slug) =>
     dispatch({
@@ -37,9 +39,12 @@ const ItemPreview = (props) => {
     >
       <img
         alt="item"
-        src={item.image}
+        src={
+          falsyValues.includes(this.props.item.image)
+            ? placeholderImg
+            : this.props.item.image
+        }
         placeholder={placeholderImg}
-        onError={placeholderImg}
         className="card-img-top item-img"
         style={{ borderRadius: "20px" }}
       />
